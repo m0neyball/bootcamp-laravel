@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $providers = [
+      'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+    ];
     /**
      * Bootstrap any application services.
      *
@@ -23,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->isLocal() && ! empty($this->providers)) {
+            foreach ($this->providers as $provider) {
+                $this->app->register($provider);
+            }
+        }
     }
 }
