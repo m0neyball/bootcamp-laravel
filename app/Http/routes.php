@@ -11,3 +11,4 @@
 |
 */
 
+Route::get('about', 'PageController@about');
