@@ -14,9 +14,10 @@
 Route::get('about', 'PageController@about');
 Route::get('contact', 'PageController@contact');
 
-Route::get('article', 'ArticlesController@index');
-Route::get('article/create','ArticlesController@create');
-Route::get('article/{id}', 'ArticlesController@show');
+Route::get('articles', 'ArticlesController@index');
+Route::get('articles/create','ArticlesController@create');
+Route::get('articles/{id}', 'ArticlesController@show');
+Route::post('articles', 'ArticlesController@authorizeForUser');
 
 Route::get('foo', function () {
     return 'Bar';
