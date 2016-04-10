@@ -12,6 +12,27 @@ class PagesController extends Controller
 
     public function about()
     {
-        return view('pages.about');
+        $name = '<span style="color: red;">B</span>en';
+
+        // return view('pages.about')->with('name', $name);
+
+        /*
+        return view('pages.about')->with([
+            'name'     => $name,
+            'birthday' => '19880925',
+        ]);
+        */
+
+        /*
+        $data = [];
+        $data[ 'name' ] = $name;
+        $data[ 'birthday' ] = '19880925';
+
+        return view('pages.about', $data);
+        */
+
+        $birthday = '19880925';
+
+        return view('pages.about', compact('name', 'birthday'));
     }
 }
