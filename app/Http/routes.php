@@ -11,13 +11,17 @@
 |
 */
 
+Route::get('/', function () {
+   return view('welcome');
+});
+
 Route::get('about', 'PageController@about');
 Route::get('contact', 'PageController@contact');
 
 Route::get('articles', 'ArticlesController@index');
+Route::post('articles', 'ArticlesController@store');
 Route::get('articles/create','ArticlesController@create');
 Route::get('articles/{id}', 'ArticlesController@show');
-Route::post('articles', 'ArticlesController@authorizeForUser');
 
 Route::get('foo', function () {
     return 'Bar';
