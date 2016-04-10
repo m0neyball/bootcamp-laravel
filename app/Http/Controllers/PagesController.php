@@ -14,6 +14,12 @@ class PagesController extends Controller
     {
         $name = '<span style="color: red;">B</span>en';
 
+        $people = [
+            'Sherry',
+            'Jack',
+            'Mary',
+        ];
+
         // return view('pages.about')->with('name', $name);
 
         /*
@@ -33,6 +39,6 @@ class PagesController extends Controller
 
         $birthday = '19880925';
 
-        return view('pages.about', compact('name', 'birthday'));
+        return view('pages.about', compact('name', 'birthday', 'people'));
     }
 }
