@@ -4,7 +4,7 @@
     <h1>Write a New Article</h1>
     <hr />
 
-    {!! Form::open() !!}
+    {!! Form::open(['url' => 'articles']) !!}
 
     <!-- Title Form Input -->
     <div class="form-group">
