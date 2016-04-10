@@ -14,6 +14,8 @@
 Route::get('about', 'PageController@about');
 Route::get('contact', 'PageController@contact');
 
+Route::get('article', 'ArticlesController@index');
+
 Route::get('foo', function () {
     return 'Bar';
 });
