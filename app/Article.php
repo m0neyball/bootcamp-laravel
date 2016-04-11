@@ -3,7 +3,6 @@
 namespace App;
 
 use Carbon\Carbon;
-use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
