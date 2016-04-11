@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\CreateArticleRequest;
 use Carbon\Carbon;
 use Request;
 
@@ -17,6 +18,11 @@ class ArticlesController extends Controller
         return view('articles.index', compact('articles'));
     }
 
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
     public function show(int $id)
     {
         $article = Article::findOrFail($id);
@@ -24,14 +30,24 @@ class ArticlesController extends Controller
         return view('articles.show', compact('article'));
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
         return view('articles.create');
     }
 
-    public function store()
+    /**
+     * Save a new article.
+     *
+     * @param CreateArticleRequest $request
+     *
+     * @return mixed
+     */
+    public function store(CreateArticleRequest $request)
     {
-        Article::create(Request::all());
+        Article::create($request->all());
 
         return redirect('articles');
     }
