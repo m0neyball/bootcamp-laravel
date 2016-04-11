@@ -30,16 +30,6 @@ class Article extends Model
 
     protected $fillable = ['title', 'body', 'published_at'];
 
-    /**
-     * setNameAttribute
-     *
-     * @param $data
-     */
-    public function setPublishedAtAttribute($data)
-    {
-        $this->attributes['published_at'] = Carbon::parse($data);
-    }
-
     public function scopeUnpublished($query)
     {
         $query->where('published_at', '>', Carbon::now());
