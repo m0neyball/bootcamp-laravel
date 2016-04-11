@@ -37,6 +37,11 @@ class Article extends Model
         $this->attributes['published_at'] = Carbon::parse($data);
     }
 
+    public function scopeUnpublished($query)
+    {
+        $query->where('published_at', '>=', Carbon::now());
+    }
+
     /**
      * @param $query
      */
