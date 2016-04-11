@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\Http\Requests\CreateArticleRequest;
-use Carbon\Carbon;
+use App\Http\Requests\ArticleRequest;
 use Request;
 
 use App\Http\Requests;
@@ -41,21 +40,35 @@ class ArticlesController extends Controller
     /**
      * Save a new article.
      *
-     * @param CreateArticleRequest $request
+     * @param ArticleRequest $request
      *
      * @return mixed
      */
-    public function store(CreateArticleRequest $request)
+    public function store(ArticleRequest $request)
     {
         Article::create($request->all());
 
         return redirect('articles');
     }
 
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
     public function edit(int $id)
     {
         $article = Article::findOrFail($id);
 
         return view('articles.edit', compact('article'));
+    }
+
+    public function update(int $id, ArticleRequest $request)
+    {
+        $article = Article::findOrFail($id);
+
+        $article->update($request::all());
+
+        return redirect('articles');
     }
 }
