@@ -28,7 +28,7 @@ class Article extends Model
 {
     protected $dates = ['published_at'];
 
-    protected $fillable = ['title', 'body', 'published_at'];
+    protected $fillable = ['title', 'body', 'published_at', 'user_id'];
 
     /**
      * setNameAttribute
