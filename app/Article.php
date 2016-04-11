@@ -13,6 +13,8 @@ class Article extends Model
         'published_at'
     ];
 
+    protected $dates = ['published_at'];
+
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', Carbon::now());
