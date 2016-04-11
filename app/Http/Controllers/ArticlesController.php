@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Carbon\Carbon;
-use Request;
+use App\Http\Requests\CreateArticleRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -32,7 +31,7 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateArticleRequest $request)
     {
         // $input['published_at'] = Carbon::now();
 
@@ -41,7 +40,7 @@ class ArticlesController extends Controller
         $article->title = $input['title'];
         */
 
-        Article::create($request::all());
+        Article::create($request->all());
 
         return redirect('articles');
     }
