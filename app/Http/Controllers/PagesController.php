@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class PagesController extends Controller
 {
@@ -16,6 +17,7 @@ class PagesController extends Controller
 //            'Lior','Lyndon','Ben'
 //        ];
         $people = [];
+
         return view('pages.about', compact('people'));
     }
 
