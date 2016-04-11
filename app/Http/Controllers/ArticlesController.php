@@ -63,11 +63,17 @@ class ArticlesController extends Controller
         return view('articles.edit', compact('article'));
     }
 
+    /**
+     * @param int            $id
+     * @param ArticleRequest $request
+     *
+     * @return mixed
+     */
     public function update(int $id, ArticleRequest $request)
     {
         $article = Article::findOrFail($id);
 
-        $article->update($request::all());
+        $article->update($request->all());
 
         return redirect('articles');
     }
