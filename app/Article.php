@@ -49,4 +49,14 @@ class Article extends Model
     {
         $query->where('published_at', '<=', Carbon::now());
     }
+
+    /**
+     * An article is owned
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
