@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\CreateArticleRequest;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,7 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function store(CreateArticleRequest $request)
+    public function store(Request $request)
     {
         // $input['published_at'] = Carbon::now();
 
@@ -39,6 +40,11 @@ class ArticlesController extends Controller
         $article = new Article();
         $article->title = $input['title'];
         */
+
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'body'  => 'required',
+        ]);
 
         Article::create($request->all());
 
