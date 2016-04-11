@@ -22,9 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Article wherePublishedAt($value)
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Query\Builder|\App\Article published()
+ * @method static \Illuminate\Database\Query\Builder|\App\Article unpublished()
  */
 class Article extends Model
 {
+    protected $dates = ['published_at'];
+
     protected $fillable = ['title', 'body', 'published_at'];
 
     /**
@@ -39,7 +42,7 @@ class Article extends Model
 
     public function scopeUnpublished($query)
     {
-        $query->where('published_at', '>=', Carbon::now());
+        $query->where('published_at', '>', Carbon::now());
     }
 
     /**
