@@ -14,7 +14,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::latest('published_at')
-            ->where('published_at', '<=', Carbon::now())
+            ->published()
             ->get();
 
         return view('articles.index', compact('articles'));
