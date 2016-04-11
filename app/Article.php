@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Article wherePublishedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Query\Builder|\App\Article published()
  */
 class Article extends Model
 {
@@ -34,5 +36,13 @@ class Article extends Model
     public function setPublishedAtAttribute($data)
     {
         $this->attributes['published_at'] = Carbon::parse($data);
+    }
+
+    /**
+     * @param $query
+     */
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<=', Carbon::now());
     }
 }
