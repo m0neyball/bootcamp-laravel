@@ -18,6 +18,9 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'WelcomeController@index');
+Route::get('/home', function() {
+    return view('home');
+});
 
 Route::get('contact', 'WelcomeController@contact');
 Route::get('about', 'PagesController@about');
@@ -31,3 +34,8 @@ Route::get('articles/{id}/edit', 'ArticlesController@edit');
 */
 
 Route::resource('articles', 'ArticlesController');
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
