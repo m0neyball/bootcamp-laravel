@@ -11,6 +11,11 @@ use App\Http\Requests;
 
 class ArticlesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $articles = \Auth::user()->articles()->published()->get();
