@@ -24,14 +24,15 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param int $id
+     * Show article
+     *
+     * @param Article $article
      *
      * @return mixed
+     *
      */
-    public function show(int $id)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.show', compact('article'));
     }
 
