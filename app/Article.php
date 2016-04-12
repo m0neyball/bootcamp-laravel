@@ -30,4 +30,14 @@ class Article extends Model
         // $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
         $this->attributes['published_at'] = Carbon::parse($date);
     }
+
+    /**
+     * An article is owned by a user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
