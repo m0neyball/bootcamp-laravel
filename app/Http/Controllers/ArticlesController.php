@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\ArticleRequest;
+use App\User;
 use Request;
 
 use App\Http\Requests;
@@ -12,7 +13,7 @@ class ArticlesController extends Controller
 {
     public function index()
     {
-        $articles = Article::latest('published_at')->published()->get();
+        $articles = \Auth::user()->articles()->published()->get();
 
         return view('articles.index', compact('articles'));
     }
@@ -46,7 +47,9 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        Article::create($request->all());
+        $article = new Article($request->all());
+
+        \Auth::user()->articles()->save($article);
 
         return redirect('articles');
     }
