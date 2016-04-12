@@ -65,9 +65,5 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Article::class);
     }
-
-    public function isATeamManager()
-    {
-        return true;
-    }
+    
 }
