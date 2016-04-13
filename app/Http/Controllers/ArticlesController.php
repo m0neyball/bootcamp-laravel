@@ -58,9 +58,7 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request)
     {
 
-        $article = Auth::user()->articles()->create($request->all());
-
-        $article->tags()->attach($request->input('tag_list'));
+        $this->createArticle($request);
 
         flash()->overlay('Your article has been successfully created!', 'Good Job');
 
@@ -106,5 +104,15 @@ class ArticlesController extends Controller
     private function syncTags(Article $article, $tags)
     {
         $article->tags()->sync($tags);
+    }
+
+    /**
+     * @param ArticleRequest $request
+     */
+    private function createArticle(ArticleRequest $request)
+    {
+        $article = Auth::user()->articles()->create($request->all());
+
+        $this->syncTags($article, $request->input('tag_list'));
     }
 }
