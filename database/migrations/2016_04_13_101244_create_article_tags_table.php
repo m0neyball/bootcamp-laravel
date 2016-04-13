@@ -12,7 +12,7 @@ class CreateArticleTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_tags', function (Blueprint $table) {
+        Schema::create('article_tag', function (Blueprint $table) {
             $table->integer('article_id')->unsigend()->index();
             $table->foreign('article_id')
                   ->references('id')
