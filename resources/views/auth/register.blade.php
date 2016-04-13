@@ -5,7 +5,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h2>Register</h2>
 
-            <form action="{{ url('/register') }}" method="POST">
+            <form action="{{ url('/auth/register') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <p>
