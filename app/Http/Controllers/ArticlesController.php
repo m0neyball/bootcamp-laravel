@@ -92,8 +92,19 @@ class ArticlesController extends Controller
     {
         $article->update($request->all());
 
-        $article->tags()->sync($request->input('tag_list'));
+        $this->syncTags($article, $request->input('tag_list'));
 
         return redirect('articles');
+    }
+
+    /**
+     * Sync up the tags
+     *
+     * @param Article $article
+     * @param         $tags
+     */
+    private function syncTags(Article $article, $tags)
+    {
+        $article->tags()->sync($tags);
     }
 }
