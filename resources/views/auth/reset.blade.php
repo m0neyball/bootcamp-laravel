@@ -5,37 +5,38 @@
         <div class="col-md-8 col-md-offset-2">
             <h2>Reset Password</h2>
 
-            <form action="{{ url('/password/reset') }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form method="POST" action="/password/reset">
+                {!! csrf_field() !!}
                 <input type="hidden" name="token" value="{{ $token }}">
 
-                <p>
-                    <label for="email">Email:</label><br>
-                    <input id="email" name="email" type="email" value="{{ $email or old('email') }}">
-                    @if ($errors->has('email'))
-                        <strong>{{ $errors->first('email') }}</strong>
-                    @endif
-                </p>
+                @if (count($errors) > 0)
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
 
-                <p>
-                    <label for="password">Password:</label><br>
-                    <input id="password" name="password" type="password">
-                    @if ($errors->has('password'))
-                        <strong>{{ $errors->first('password') }}</strong>
-                    @endif
-                </p>
+                <div>
+                    Email
+                    <input type="email" name="email" value="{{ old('email') }}">
+                </div>
 
-                <p>
-                    <label for="password_confirmation">Confirm Password:</label><br>
-                    <input id="password_confirmation" name="password_confirmation" type="password">
-                    @if ($errors->has('password_confirmation'))
-                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                    @endif
-                </p>
+                <div>
+                    Password
+                    <input type="password" name="password">
+                </div>
 
-                <p>
-                    <input type="submit" value="Reset Password">
-                </p>
+                <div>
+                    Confirm Password
+                    <input type="password" name="password_confirmation">
+                </div>
+
+                <div>
+                    <button type="submit">
+                        Reset Password
+                    </button>
+                </div>
             </form>
         </div>
     </div>

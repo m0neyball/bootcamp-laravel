@@ -11,20 +11,27 @@
                 </p>
             @endif
 
-            <form action="{{ url('/password/email') }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form method="POST" action="/password/email">
+                {!! csrf_field() !!}
 
-                <p>
-                    <label for="email">Email:</label><br>
-                    <input id="email" name="email" type="email" value="{{ old('email') }}">
-                    @if ($errors->has('email'))
-                        <strong>{{ $errors->first('email') }}</strong>
-                    @endif
-                </p>
+                @if (count($errors) > 0)
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
 
-                <p>
-                    <input type="submit" value="Send Password Reset Link">
-                </p>
+                <div>
+                    Email
+                    <input type="email" name="email" value="{{ old('email') }}">
+                </div>
+
+                <div>
+                    <button type="submit">
+                        傳送重置密碼連結
+                    </button>
+                </div>
             </form>
         </div>
     </div>
