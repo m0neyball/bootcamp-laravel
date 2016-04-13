@@ -54,11 +54,10 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request)
     {
         \Auth::user()->articles()->create($request->all());
-        
-        return redirect('articles')->with([
-            'flash_message' => 'Your article has been created!',
-            'flash_message_important' => true
-        ]);
+
+        flash()->overlay('Your article has been successfully created!', 'Good Job');
+
+        return redirect('articles');
     }
 
     /**

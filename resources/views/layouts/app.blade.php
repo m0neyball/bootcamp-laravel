@@ -72,7 +72,7 @@
             </div>
         </div>
     </nav>
-    @include('partials.flash')
+    @include('flash::message')
     @yield('content')
 
     <!-- JavaScripts -->
@@ -80,7 +80,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script>
-        $('div.alert').not('.alert-important').delay(3000).slideToggle(300);
+        $('#flash-overlay-modal').modal();
+//        $('div.alert').not('.alert-important').delay(3000).slideToggle(300);
     </script>
 </body>
 </html>
