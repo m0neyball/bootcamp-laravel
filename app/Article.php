@@ -23,6 +23,13 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Query\Builder|\App\Article published()
  * @method static \Illuminate\Database\Query\Builder|\App\Article unpublished()
+ * @property integer $user_id
+ * @property string $excerpt
+ * @property-read \App\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @property-read mixed $tag_list
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereExcerpt($value)
  */
 class Article extends Model
 {
@@ -52,7 +59,7 @@ class Article extends Model
     }
 
     /**
-     * An article is owned
+     * An article is owned.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -61,8 +68,23 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the tags associated with the give article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    /**
+     * Get a list of tag ids associated with the current article.
+     *
+     * @return array
+     */
+    public function getTagListAttribute()
+    {
+        return $this->tags->lists('id')->toArray();
     }
 }
