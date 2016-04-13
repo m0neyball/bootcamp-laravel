@@ -3,6 +3,8 @@
 /.idea
 /.vagrant
 /storage/debugbar
+/public/css
+/public/build
 Homestead.yaml
 Homestead.json
 .env
