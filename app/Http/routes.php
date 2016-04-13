@@ -31,3 +31,9 @@ Route::get('articles/{id}/edit', 'ArticlesController@edit');
 */
 
 Route::resource('articles', 'ArticlesController');
+
+Route::group(['namespace' => 'Auth'], function()
+{
+    Route::Controller('auth', 'AuthController');
+    Route::Controller('password', 'PasswordController');
+});
