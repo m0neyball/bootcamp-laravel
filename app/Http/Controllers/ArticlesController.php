@@ -73,15 +73,13 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param int            $id
+     * @param Article        $article
      * @param ArticleRequest $request
      *
      * @return mixed
      */
-    public function update(int $id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
-
         $article->update($request->all());
 
         return redirect('articles');
