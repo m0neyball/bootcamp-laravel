@@ -20,7 +20,11 @@ Route::get('/', function () {
 Route::get('/', 'WelcomeController@index');
 
 Route::get('contact', 'WelcomeController@contact');
-Route::get('about', 'PagesController@about');
+
+Route::get('about', [
+    'middleware' => 'auth',
+    'uses'       => 'PagesController@about',
+]);
 
 /*
 Route::get('articles', 'ArticlesController@index');
@@ -44,3 +48,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('password/reset/{token}', 'PasswordController@getReset');
     Route::post('password/reset', 'PasswordController@postReset');
 });
+
+Route::get('foo', ['middleware' => 'manager', function () {
+    return 'this page may be viewed by managers';
+}]);
