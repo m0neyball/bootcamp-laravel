@@ -61,14 +61,15 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param int $id
+     * Update article
+     *
+     * @param Article $article
      *
      * @return mixed
+     *
      */
-    public function edit(int $id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.edit', compact('article'));
     }
 
