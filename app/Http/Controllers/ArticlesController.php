@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
     public function index()
     {
+        // return \Auth::User()->name;
+
         $articles = Article::latest('published_at')
             ->published()
             ->get();
@@ -46,7 +49,11 @@ class ArticlesController extends Controller
             'body'  => 'required',
         ]);
 
-        Article::create($request->all());
+        $article = new Article($request->all());
+
+        Auth::user()->articles()->save($article);
+
+        // Article::create($request->all());
 
         return redirect('articles');
     }
