@@ -16,7 +16,7 @@ class ArticlesController extends Controller
     {
 //        $articles = Article::latest('published_at')->get();
 //        $articles = Article::latest('published_at')->where('published_at','<=', Carbon::now())->get();
-        $articles = Article::latest('published_at')->published()->get();
+        $articles = Article::latest('published_at')->unpublished()->get();
         
         return view('articles.index',compact('articles'));
     }
