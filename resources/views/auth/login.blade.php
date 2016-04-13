@@ -25,6 +25,11 @@
                 </p>
 
                 <p>
+                    <label for="remember">Remember Me</label><br>
+                    <input id="remember" name="remember" type="checkbox">
+                </p>
+
+                <p>
                     <input type="submit" value="Login">
                 </p>
 
