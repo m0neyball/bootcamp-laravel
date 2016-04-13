@@ -13,6 +13,11 @@ class ArticlesController extends Controller
 {
     public function index()
     {
+        // get user object json
+        // return \Auth::User();
+        // get user name
+        // return \Auth::User()->name;
+
         $articles = Article::latest('published_at')
             ->published()
             ->get();
