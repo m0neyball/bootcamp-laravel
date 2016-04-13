@@ -27,6 +27,10 @@
                 <p>
                     <input type="submit" value="Login">
                 </p>
+
+                <p>
+                    <a href="{{ url('/password/email') }}">Forgot Your Password?</a>
+                </p>
             </form>
         </div>
     </div>
