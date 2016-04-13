@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -51,7 +52,17 @@ class ArticlesController extends Controller
             'body'  => 'required',
         ]);
 
-        Article::create($request->all());
+        /*
+        $request = $request->all();
+        $request['user_id'] = Auth::id();
+        Article::create($request->all()); // user_id => Auth::User()->id
+        */
+
+        $article = new Article($request->all());
+
+        // get Collection
+        // Auth::User()->articles;
+        Auth::User()->articles()->save($article);
 
         return redirect('articles');
     }
