@@ -73,10 +73,13 @@ class ArticlesController extends Controller
         Auth::User()->articles()->create($request->all());
 
         // \Session::flash('flash_message', 'You article has been created!');
-        $request->session()->flash('flash_message', 'You article has been created...!!!');
-        $request->session()->flash('flash_message_important', true);
+        // $request->session()->flash('flash_message', 'You article has been created...!!!');
+        // $request->session()->flash('flash_message_important', true);
 
-        return redirect('articles');
+        return redirect('articles')->with([
+            'flash_message' => 'You article has been created...!!!',
+            'flash_message_important' => true
+        ]);
     }
 
     public function edit(Article $article)
