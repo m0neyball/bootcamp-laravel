@@ -39,11 +39,11 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * A User has many articles.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function articles()
     {
-        return $this->hasMany('App\Article');
+        return $this->hasMany(Article::class);
     }
 }

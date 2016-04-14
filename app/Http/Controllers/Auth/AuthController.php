@@ -62,4 +62,9 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function postBar()
+    {
+        return 'fooBar';
+    }
 }
