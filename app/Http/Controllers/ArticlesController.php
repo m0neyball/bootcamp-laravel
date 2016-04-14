@@ -65,11 +65,16 @@ class ArticlesController extends Controller
         Article::create($request->all()); // user_id => Auth::User()->id
         */
 
-        $article = new Article($request->all());
+        // $article = new Article($request->all());
 
         // get Collection
         // Auth::User()->articles;
-        Auth::User()->articles()->save($article);
+        // Auth::User()->articles()->save($article);
+        Auth::User()->articles()->create($request->all());
+
+        // \Session::flash('flash_message', 'You article has been created!');
+        $request->session()->flash('flash_message', 'You article has been created...!!!');
+        $request->session()->flash('flash_message_important', true);
 
         return redirect('articles');
     }
