@@ -20,6 +20,8 @@
 //    return view('pages.contact');
 //});
 
+Route::get('/','Auth\AuthController@getLogin');
+
 Route::get('about','PagesController@about');
 Route::get('contact','PagesController@contact');
 
@@ -36,3 +38,5 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
+
+
