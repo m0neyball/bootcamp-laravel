@@ -53,4 +53,9 @@ class Article extends Model
             ->withTimestamps()
             ->withPivot('created_at', 'updated_at');
     }
+
+    public function getTagListAttribute()
+    {
+        return $this->tags()->lists('id')->toArray();
+    }
 }
