@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 
 class ArticlesController extends Controller
 {
@@ -76,10 +77,17 @@ class ArticlesController extends Controller
         // $request->session()->flash('flash_message', 'You article has been created...!!!');
         // $request->session()->flash('flash_message_important', true);
 
+        // flash()->success('You article has been created!')->important();
+        flash()->success('You article has been created!');
+
+        /*
         return redirect('articles')->with([
             'flash_message' => 'You article has been created...!!!',
             'flash_message_important' => true
         ]);
+        */
+
+        return redirect('articles');
     }
 
     public function edit(Article $article)
