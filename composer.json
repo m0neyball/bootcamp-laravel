@@ -64,7 +64,8 @@
         ],
         "build-develop": [
             "composer update",
-            "npm install"
+            "npm install",
+            "gulp"
         ],
         "build-deploy": [
             "composer update --no-dev",
