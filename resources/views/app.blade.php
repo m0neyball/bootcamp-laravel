@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    @include('partials.flash')
+    @include('flash::message')
 
     @yield('content')
 </div>
@@ -20,8 +20,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
-<script>
-    $('div.alert').not('.alert-important').delay(3000).slideUp(300);
-</script>
+
+@if(!Session::get('flash_notification.important'))
+    <script>
+        $('div.alert').not('.alert-important').delay(3000).slideUp(300);
+    </script>
+    @endif
+
+            <!-- This is only necessary if you do Flash::overlay('...') -->
+    <script>
+        $('#flash-overlay-modal').modal();
+    </script>
 </body>
 </html>
