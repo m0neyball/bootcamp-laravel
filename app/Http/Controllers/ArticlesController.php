@@ -76,9 +76,7 @@ class ArticlesController extends Controller
         // get Collection
         // Auth::User()->articles;
         // Auth::User()->articles()->save($article);
-        $article = Auth::User()->articles()->create($request->all());
-
-        $article->tags()->attach($request->input('tag_list'));
+        $this->createArticle($request);
 
         // \Session::flash('flash_message', 'You article has been created!');
         // $request->session()->flash('flash_message', 'You article has been created...!!!');
@@ -108,6 +106,31 @@ class ArticlesController extends Controller
     {
         $article->update($request->all());
 
+        $this->syncTags($article, $request->input('tag_list'));
+
         return redirect('articles');
+    }
+
+    /**
+     * @param Article $article
+     * @param array   $tags
+     */
+    public function syncTags(Article $article, array $tags)
+    {
+        $article->tags()->sync($tags);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    private function createArticle(Request $request)
+    {
+        $article = Auth::User()->articles()->create($request->all());
+
+        $this->syncTags($article, $request->input('tag_list'));
+
+        return $article;
     }
 }
