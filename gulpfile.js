@@ -24,5 +24,12 @@ elixir(function (mix) {
         'app.css'
     ], 'public/output/final.css', 'public/css');
 
+    mix.scripts([
+        'libs/jquery.min.js',
+        'libs/bootstrap.min.js',
+        'libs/select2.min.js',
+        'module.js'
+    ], 'public/output/final.js', 'public/js');
+
     mix.version('output/final.css');
 });
