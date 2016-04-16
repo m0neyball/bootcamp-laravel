@@ -31,5 +31,8 @@ elixir(function (mix) {
         'module.js'
     ], 'public/output/final.js', 'public/js');
 
-    mix.version('output/final.css');
+    mix.version([
+        'output/final.css',
+        'output/final.js'
+    ]);
 });

@@ -14,7 +14,7 @@
 
 @yield('footer')
 
-<script src="/output/final.js"></script>
+<script src="{{ elixir('output/final.js') }}"></script>
 
 @if(!Session::get('flash_notification.important'))
     <script>
