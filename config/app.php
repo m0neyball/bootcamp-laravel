@@ -148,6 +148,7 @@ return [
 
         Laracasts\Flash\FlashServiceProvider::class,
 
+        App\Providers\ViewComposerServiceProvider::class,
     ],
 
     /*

@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Article;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,9 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('partials.nav', function ($view){
-          $view->with('latest', Article::latest()->first());
-        });
+        //
     }
 
     /**
