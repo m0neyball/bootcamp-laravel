@@ -1,0 +1,102 @@
+<?php
+
+namespace App;
+
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * App\Article
+ *
+ * @property integer $id
+ * @property string $title
+ * @property string $body
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $published_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereBody($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article wherePublishedAt($value)
+ * @mixin \Eloquent
+ * @method static \Illuminate\Database\Query\Builder|\App\Article published()
+ * @method static \Illuminate\Database\Query\Builder|\App\Article unpublished()
+ * @property integer $user_id
+ * @property string $excerpt
+ * @property-read \App\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @property-read mixed $tag_list
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereExcerpt($value)
+ */
+class Article extends Model
+{
+    protected $dates = ['published_at'];
+
+    protected $fillable = ['title', 'body', 'published_at', 'user_id'];
+
+    /**
+     * setNameAttribute
+     *
+     * @param $data
+     */
+    public function setPublishedAtAttribute($data)
+    {
+        $this->attributes['published_at'] = Carbon::parse($data);
+    }
+
+  /**
+   * Get the published_at attribute.
+   *
+   * @param $data
+   *
+   * @return string
+   */
+    public function getPublishedAtAttribute($data)
+    {
+        return Carbon::parse($data)->format('Y-m-d');
+    }
+
+    /**
+     * Show publish articles
+     *
+     * @param $query
+     */
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<=', Carbon::now())
+              ->orderBy('published_at', 'desc');
+    }
+
+    /**
+     * An article is owned.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the tags associated with the give article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    /**
+     * Get a list of tag ids associated with the current article.
+     *
+     * @return array
+     */
+    public function getTagListAttribute()
+    {
+        return $this->tags->lists('id')->toArray();
+    }
+}

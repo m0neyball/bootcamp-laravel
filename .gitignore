@@ -1,9 +1,14 @@
 /vendor
 /node_modules
+/.idea
+/.vagrant
+/storage/debugbar
+/public/css
+/public/build
 Homestead.yaml
 Homestead.json
 .env
-/.idea
-/.vagrant
+_ide_helper.php
+.phpstorm.meta.php
 composer.lock
 Vagrantfile
