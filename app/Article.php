@@ -49,7 +49,7 @@ class Article extends Model
 
     public function getPublishedAtAttribute($data)
     {
-        return new Carbon($data);
+        return Carbon::parse($data)->format('Y-m-d');
     }
 
     /**
