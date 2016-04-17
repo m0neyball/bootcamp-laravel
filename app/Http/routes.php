@@ -17,6 +17,19 @@ Route::get('/', function () {
 });
 */
 
+/*
+interface BarInterface {}
+class Bar implements BarInterface {}
+class SecondBar implements BarInterface {}
+App()->bind('BarInterface', 'SecondBar');
+Route::get('bar', function () {
+    $bar = App('BarInterface');
+    dd($bar);
+});
+*/
+
+Route::get('ben', 'BenController@ben');
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('contact', 'WelcomeController@contact');
