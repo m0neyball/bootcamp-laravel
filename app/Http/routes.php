@@ -49,6 +49,8 @@ Route::get('articles/{id}/edit', 'ArticlesController@edit');
 
 Route::resource('articles', 'ArticlesController');
 
+Route::get('tags/{tags}', 'TagsController@show');
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::Controller('auth', 'AuthController');
 
