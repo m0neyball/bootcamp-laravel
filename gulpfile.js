@@ -11,6 +11,28 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
+elixir(function (mix) {
+    mix
+        .sass('app.scss')
+        .coffee('module.coffee')
+        .phpUnit();
+
+    mix.styles([
+        'vendor/normalize.css',
+        'libs/bootstrap.min.css',
+        'libs/select2.min.css',
+        'app.css'
+    ], 'public/output/final.css', 'public/css');
+
+    mix.scripts([
+        'libs/jquery.min.js',
+        'libs/bootstrap.min.js',
+        'libs/select2.min.js',
+        'module.js'
+    ], 'public/output/final.js', 'public/js');
+
+    mix.version([
+        'output/final.css',
+        'output/final.js'
+    ]);
 });
