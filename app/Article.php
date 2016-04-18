@@ -4,7 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\DocBlock\Tag;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Model
 {
@@ -43,13 +43,14 @@ class Article extends Model
     return $this->belongsTo(User::class);
   }
 
+
   /**
    * Get the tags associated with the given article.
    *
-   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   * @return BelongsToMany
    */
   public function tags()
   {
-    return $this->belongsToMany(Tag::class);
+    return $this->belongsToMany(Tag::class)->withTimestamps();
   }
 }
