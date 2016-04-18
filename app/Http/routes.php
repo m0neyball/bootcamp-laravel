@@ -11,16 +11,16 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
 //Route::get('contact', 'WelcomeController@contact');
 
 //Route::get('/contact', function() {
 //    return view('pages.contact');
 //});
 
-Route::get('/','Auth\AuthController@getLogin');
+//Route::get('/','Auth\AuthController@getLogin');
 
 Route::get('about','PagesController@about');
 Route::get('contact','PagesController@contact');
