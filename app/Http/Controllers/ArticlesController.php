@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\ArticleRequest;
+use App\Tag;
 use Auth;
 use Carbon\Carbon;
 //use Request;
@@ -58,38 +59,39 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $tags = Tag::lists('name','id');
+        return view('articles.create',compact('tags'));
     }
 
     /**
      * save new article.
      *
-     * @param CreateArticleRequest $request
+     * @param ArticleRequest $request
      *
      * @return mixed
      */
     public function store(ArticleRequest $request)
     {
-//        $this->validate($request, ['title' => 'required|min:3', 'body' => 'required', 'published_at' => 'required|date']);
 
-//        Article::create($request->all());
-        $article = new Article($request->all());
-//        Auth::user()->articles()->save($article);
-        Auth::user()->articles()->create($request->all());
+
+        $articles = Auth::user()->articles()->create($request->all());
+
+        $articles->tags()->attach( $request->input('tag_list'));
+
         flash('You are now logged in');
-//        flash()->overlay('Your article has been successfully created','Good Job');
+
         return redirect('articles')->with('flash_message');
     }
 
     public function edit(Article $article)
     {
-//        $article = Article::findOrFail($id);
-        return view('articles.edit',compact('article'));
+
+        $tags =  Tag::lists('name','id');
+        return view('articles.edit',compact('article','tags'));
     }
 
     public function update(Article $article, ArticleRequest $request)
     {
-//        $article = Article::findOrFail($id);
 
         $article->update($request->all());
 
