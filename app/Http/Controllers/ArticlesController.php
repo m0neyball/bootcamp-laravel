@@ -74,8 +74,11 @@ class ArticlesController extends Controller
 
 //        Article::create($request->all());
         $article = new Article($request->all());
-        Auth::user()->articles()->save($article);
-        return redirect('articles');
+//        Auth::user()->articles()->save($article);
+        Auth::user()->articles()->create($request->all());
+        flash('You are now logged in');
+//        flash()->overlay('Your article has been successfully created','Good Job');
+        return redirect('articles')->with('flash_message');
     }
 
     public function edit(Article $article)
