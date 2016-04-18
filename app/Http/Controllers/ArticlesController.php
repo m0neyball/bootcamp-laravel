@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 class ArticlesController extends Controller
 {
 
+    /**
+     * ArticlesController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth',['only'=>'create']);
@@ -73,10 +76,9 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request)
     {
 
+        $this->createArticle($request);
 
-        $articles = Auth::user()->articles()->create($request->all());
 
-        $articles->tags()->attach( $request->input('tag_list'));
 
         flash('You are now logged in');
 
@@ -94,7 +96,36 @@ class ArticlesController extends Controller
     {
 
         $article->update($request->all());
+        $this->syncTags($article, $request->input('tag_list')); //update
 
         return redirect('articles');
+    }
+
+    /**
+     * Sync up thi list of tags in the database.
+     *
+     * @param Article $article
+     * @param array   $tags
+     */
+    private function syncTags(Article $article, array $tags)
+    {
+        $article->tags()->sync($tags);
+    }
+
+
+    /**
+     * Save a new article.
+     *
+     * @param ArticleRequest $request
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    private function createArticle(ArticleRequest $request)
+    {
+        $article = Auth::user()->articles()->create($request->all());
+
+        $article->tags()->attach( $request->input('tag_list')); //add
+
+        return $article;
     }
 }
