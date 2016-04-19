@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Article;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -13,10 +14,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('partials.nav', function($view)
-        {
-            $view->with('latest', Article::latest()->first());
-        });
+        $this->composeNavigation();
     }
 
     /**
@@ -27,5 +25,17 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     * compose the navigation bar.
+     *
+     */
+    private function composeNavigation()
+    {
+        view()->composer('partials.nav', function($view)
+        {
+            $view->with('latest', Article::latest()->first());
+        });
     }
 }
