@@ -21,6 +21,7 @@ Route::get('/', function () {
 //});
 
 //Route::get('/','Auth\AuthController@getLogin');
+Route::get('foo','FooController@foo');
 
 Route::get('about','PagesController@about');
 Route::get('contact','PagesController@contact');
@@ -39,8 +40,8 @@ Route::controllers([
     'password' => 'Auth\PasswordController'
 ]);
 
-Route::get('foo', ['middleware' => 'manager', function(){
-    return 'this page may be only be viewed by managers';
-}]);
+//Route::get('foo', ['middleware' => 'manager', function(){
+//    return 'this page may be only be viewed by managers';
+//}]);
 
 
