@@ -1,0 +1,4 @@
+/build
+/css/*
+/js/*
+!css/vendor/
