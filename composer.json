@@ -12,8 +12,7 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1",
-        "laravel/homestead": "^3.0"
+        "phpspec/phpspec": "~2.1"
     },
     "autoload": {
         "classmap": [
@@ -44,21 +43,15 @@
             "php artisan optimize"
         ],
         "build": [
+            "@develop",
             "@post-root-package-install",
-            "@post-create-project-cmd",
-            "@build-develop",
-            "@build-homestead",
-            "open http://homestead.app"
+            "@post-create-project-cmd"
         ],
-        "build-homestead": [
-            "homestead make",
-            "vagrant up"
-        ],
-        "build-develop": [
+        "develop": [
             "composer update",
             "npm install"
         ],
-        "build-deploy": [
+        "deploy": [
             "composer update --no-dev",
             "npm install --production"
         ],
