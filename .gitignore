@@ -1,9 +1,10 @@
-/vendor
-/node_modules
+vendor/
+node_modules/
 Homestead.yaml
 Homestead.json
 .env
-/.idea
-/.vagrant
+.idea/
+.vagrant/
 composer.lock
 Vagrantfile
+public/
