@@ -15,7 +15,7 @@ a {
     }
 }
 
-/*layout*/
+// layout
 #container {
     width: 100%;
 
@@ -33,7 +33,7 @@ a {
     }
 }
 
-/*header*/
+// header
 #header {
     overflow: hidden;
 
@@ -70,7 +70,7 @@ a {
     }
 }
 
-/*content*/
+// content
 #content {
     #aside {
         float: left;
@@ -96,7 +96,7 @@ a {
 
 }
 
-/*footer*/
+// footer
 #footer {
     p {
         color: grey;
@@ -107,9 +107,9 @@ a {
 
 
 
-/*練習*/
+// 練習
 
-/*載入共同樣式*/
+// 載入共同樣式
 .style_a {
     border: 1px #f00;
     background-color: #fdd;
@@ -126,11 +126,6 @@ a {
 
 // 共同 div. name 樣式
 
-/*
- * this is hello world ...
- * dasdsada
- * @author fox
- */
 .box_b1 {
     background-color: #fdd;
 }
@@ -160,14 +155,14 @@ a {
     border-width: 3px;
 }
 
-/*@extend*/
+// @extend
 #context a%extreme {
     color: blue;
     font-weight: bold;
     font-size: 2em;
 }
 
-/*函數*/
+// 函數
 
 .debug {
     @debug 10em + 12em;
